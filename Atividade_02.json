@@ -1,0 +1,189 @@
+{
+  "name": "Atividade_02",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1OGLmZc33LWrBlDICCT1D_Izu2p6yhWFp",
+          "mode": "list",
+          "cachedResultName": "Teste_N8n",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1OGLmZc33LWrBlDICCT1D_Izu2p6yhWFp"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f78fb1b8-6ff6-45ec-bcac-ba74731ab5a3",
+      "name": "Google Drive Trigger",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Oix6gVeYBGtcTdob",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "writer",
+            "type": "user",
+            "emailAddress": "oliveirabianca3607@gmail.com"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "9fc1394b-5951-4d00-94bc-da4577a9a651",
+      "name": "Share file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Oix6gVeYBGtcTdob",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "apparud6ZbOGJtUg5",
+          "mode": "list",
+          "cachedResultName": "Teste_N8n",
+          "cachedResultUrl": "https://airtable.com/apparud6ZbOGJtUg5"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblC9zECRdI0J7WXN",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/apparud6ZbOGJtUg5/tblC9zECRdI0J7WXN"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "File Id": "={{ $('Google Drive Trigger').item.json.id }}",
+            "Creation Time": "={{ $('Google Drive Trigger').item.json.createdTime }}",
+            "Recipient Email": "oliveirabianca3607@gmail.com"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "File Id",
+              "displayName": "File Id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Creation Time",
+              "displayName": "Creation Time",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Recipient Email",
+              "displayName": "Recipient Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "c14c5873-4070-4ad9-9084-069685b1847e",
+      "name": "Create a record",
+      "credentials": {
+        "airtableOAuth2Api": {
+          "id": "pEuzaOD6VM3gGckk",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Drive Trigger": {
+      "main": [
+        [
+          {
+            "node": "Share file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Share file": {
+      "main": [
+        [
+          {
+            "node": "Create a record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "421366df-99c2-48e6-a453-b8c5c7d91f14",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "feca97840fd699ed8fdeda14fb121852d6d79254a6c3d2ab9888cf1c5dc50c79"
+  },
+  "id": "rumMQbE7Kx4Y9dOb",
+  "tags": []
+}

@@ -1,0 +1,207 @@
+{
+  "name": "Atividade_01",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Atividade_01",
+        "formDescription": "Descricao da Atividade 01",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Qual o seu primeiro nome ?",
+              "placeholder": "Digite aqui o primeiro nome",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Qual e o seu sobrenome ?",
+              "placeholder": "Digite aqui o seu sobrenome ",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Qual o seu e-mail ?",
+              "fieldType": "email",
+              "placeholder": "Digite aqui o seu e-mail",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Qual o seu numero de telefone ?",
+              "fieldType": "number",
+              "placeholder": "Digite o seu numero de telefone ",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Descreva o seu problema:",
+              "fieldType": "textarea",
+              "placeholder": "Digite aqui"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "608a7fa1-a2aa-4e19-b42e-a403d1776d8c",
+      "name": "On form submission",
+      "webhookId": "866d572f-7ddc-4eb6-b1d9-a569afacb675"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1kRqqQNnrXF7c0MeUZVPwCdA_h3ZcTXVgrS5blrZBFZI",
+          "mode": "list",
+          "cachedResultName": "Atividade_01",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1kRqqQNnrXF7c0MeUZVPwCdA_h3ZcTXVgrS5blrZBFZI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1kRqqQNnrXF7c0MeUZVPwCdA_h3ZcTXVgrS5blrZBFZI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Primeiro Nome": "={{ $json['Qual o seu primeiro nome ?'] }}",
+            "Sobrenome": "={{ $json['Qual e o seu sobrenome ?'] }}",
+            "E-Mail": "={{ $json['Qual o seu e-mail ?'] }}",
+            "Numero de contato": "={{ $json['Qual o seu numero de telefone ?'] }}",
+            "Descricao": "={{ $json['Descreva o seu problema:'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Primeiro Nome",
+              "displayName": "Primeiro Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sobrenome",
+              "displayName": "Sobrenome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "E-Mail",
+              "displayName": "E-Mail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Numero de contato",
+              "displayName": "Numero de contato",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Descricao",
+              "displayName": "Descricao",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        208,
+        0
+      ],
+      "id": "90398a03-3daf-4913-80c4-9eb7276b9178",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vaAWMoMCwlTREqW7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "guilhermen610@gmail.com",
+        "subject": "Atividade_01",
+        "emailType": "text",
+        "message": "=Bom dia , {{ $json['Primeiro Nome'] }} {{ $json.Sobrenome }}.\n\nAgreco por ter entrado em contato com a nossa agencia , gostaria de saber se o seu problema com:\"{{ $json.Descricao }}\" tenha sido resolvido.\n\nAtencisamente,\n\nGuilherme de Meira NAzar",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "3227ee0c-7324-4b07-9efc-95b8311b6620",
+      "name": "Send a message",
+      "webhookId": "2e99f4f0-f0f7-4dcb-947e-e3aa9627cdb5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Kar5755YzNIGGZo3",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f18debfd-f9fc-41a3-b1f0-e6f9442047fa",
+  "meta": {
+    "instanceId": "feca97840fd699ed8fdeda14fb121852d6d79254a6c3d2ab9888cf1c5dc50c79"
+  },
+  "id": "a2Dmb8FcN76HDMFX",
+  "tags": []
+}

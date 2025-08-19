@@ -1,0 +1,165 @@
+{
+  "name": "Atividade_07_Feedback_Collection",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Feedback form",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Qual e o seu primeiro nome ?"
+            },
+            {
+              "fieldLabel": "Qual e o seu email ?"
+            },
+            {
+              "fieldLabel": "Qual foi a sua experiencia ?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Satisfeito "
+                  },
+                  {
+                    "option": "Bom"
+                  },
+                  {
+                    "option": "Neutro"
+                  },
+                  {
+                    "option": "Ruim"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Deixe o seu comentario "
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d3be268b-d878-4074-bd0e-8f6a82527fe9",
+      "name": "On form submission",
+      "webhookId": "9ea387af-fd30-4dd0-a4a4-8b92446eb9d0"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1NLlkO8M6ZIg6O7aRJ38wLZ8igeRemf-7GBhza6ksfBI",
+          "mode": "list",
+          "cachedResultName": "Teste_Coleta_feedback",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NLlkO8M6ZIg6O7aRJ38wLZ8igeRemf-7GBhza6ksfBI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NLlkO8M6ZIg6O7aRJ38wLZ8igeRemf-7GBhza6ksfBI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json['Qual e o seu primeiro nome ?'] }}",
+            "Email": "={{ $json['Qual e o seu email ?'] }}",
+            "Feedback": "={{ $json['Qual foi a sua experiencia ?'] }}",
+            "comentario": "={{ $json['Deixe o seu comentario '] }}"
+          },
+          "matchingColumns": [
+            "Name"
+          ],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Feedback",
+              "displayName": "Feedback",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "comentario",
+              "displayName": "comentario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        208,
+        0
+      ],
+      "id": "bf54dcd6-5106-40bb-8bc1-77fb23feda79",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vaAWMoMCwlTREqW7",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f0d220f5-fee8-4c06-bb04-6dbec0b43b33",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "feca97840fd699ed8fdeda14fb121852d6d79254a6c3d2ab9888cf1c5dc50c79"
+  },
+  "id": "QfCfy3MWmlqPotJf",
+  "tags": []
+}

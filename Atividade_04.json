@@ -1,0 +1,101 @@
+{
+  "name": "Atividade_04",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1OGLmZc33LWrBlDICCT1D_Izu2p6yhWFp",
+          "mode": "list",
+          "cachedResultName": "Teste_N8n",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1OGLmZc33LWrBlDICCT1D_Izu2p6yhWFp"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1dd5fd2d-2149-4cba-8b5c-d5897bd5dede",
+      "name": "Google Drive Trigger",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Oix6gVeYBGtcTdob",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "244eaf19-797f-8050-9d49-d1c92a86a2d3",
+          "mode": "list",
+          "cachedResultName": "244eaf19-797f-8050-9d49-d1c92a86a2d3",
+          "cachedResultUrl": "https://www.notion.so/244eaf19797f80509d49d1c92a86a2d3"
+        },
+        "title": "={{ $json.originalFilename }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "url|url",
+              "urlValue": "={{ $json.webViewLink }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "6d00b48a-f9b7-4233-9cdb-8fbaef646b83",
+      "name": "Create a database page",
+      "credentials": {
+        "notionApi": {
+          "id": "6FI4yiskmY2n4Ywb",
+          "name": "Notion account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Drive Trigger": {
+      "main": [
+        [
+          {
+            "node": "Create a database page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4698bceb-4a99-43d4-a1e6-2d0702ca0ccb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "feca97840fd699ed8fdeda14fb121852d6d79254a6c3d2ab9888cf1c5dc50c79"
+  },
+  "id": "Yx88bMi7NYzk5Ndl",
+  "tags": []
+}

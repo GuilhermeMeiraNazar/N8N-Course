@@ -1,0 +1,82 @@
+{
+  "name": "Atividade_05",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1xfLx2dVUbk1EaG9vNW6DYNqSS8WkX_tq",
+          "mode": "list",
+          "cachedResultName": "Teste_N8n_02",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1xfLx2dVUbk1EaG9vNW6DYNqSS8WkX_tq"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "2618663e-5b59-46d4-98d1-7dccf94de168",
+      "name": "Google Drive Trigger",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Oix6gVeYBGtcTdob",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "fb0a4b23-6692-44ae-aebf-e849a3266dfe",
+      "name": "Create a document",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "5yEHOnY1tcZOFqxQ",
+          "name": "Google Docs account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Drive Trigger": {
+      "main": [
+        [
+          {
+            "node": "Create a document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "11ef5399-74bf-4410-9242-283663ae3b05",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "feca97840fd699ed8fdeda14fb121852d6d79254a6c3d2ab9888cf1c5dc50c79"
+  },
+  "id": "nAEgSoz8fpOpv06Z",
+  "tags": []
+}
